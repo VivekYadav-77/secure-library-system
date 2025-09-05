@@ -1,31 +1,95 @@
-# Secure Library Management System  
+# 📚 Library Management System (Python + SQLite)
 
-A simple yet functional **Library Management System** built with **Python and SQLite**.  
-This project simulates a real-world library workflow with features like **user authentication, book borrowing, return tracking, late fine calculation, and availability management**.  
+This is a **basic Python CLI-based Library Management System** built with SQLite for persistent storage.
 
-## 🔑 Key Features  
+---
 
-- **User Authentication**  
-  - Register with your name → get a **unique User ID**.  
-  - Login with User ID to access your account.  
+## 🚀 Features
 
-- **Book Management**  
-  - View all available books with IDs, titles, and authors.  
-  - Borrow books (availability automatically checked).  
-  - Return books with **fine calculation** if returned late.  
+- User **Registration** and **Login** (with unique User ID)
+- View all available and borrowed books
+- Borrow books with automatic charge calculation (₹10/day)
+- Return books with fine calculation (₹5/day late)
+- Persistent storage using **SQLite database**
+- Clean and simple CLI interface
 
-- **Borrow & Return System**  
-  - Borrow books for a chosen number of days.  
-  - Automatic calculation of borrowing charges.  
-  - Fine applied if book is returned after due date.  
+---
 
-- **Secure & Organized**  
-  - Uses **SQLite database** (persistent storage).  
-  - Each user has an **independent borrow/return history**.  
+## ⚙️ Tech Stack
 
-## 🛠️ Tech Stack  
+- **Python 3**
+- **SQLite3** (built-in Python module)
 
-- **Python 3.x**  
-- **SQLite3** (lightweight relational database)  
+---
 
+## 📝 Usage
 
+1. Clone the repository  
+   ```bash
+   git clone https://github.com/VivekYadav-77/secure-library-system.git
+   cd librarymanagement
+   ```
+
+2. Run the script  
+   ```bash
+   python librarymanage.py
+   ```
+
+3. Options available:
+   - Register as a new user (get a unique User ID)
+   - Login using your User ID
+   - View available books
+   - Borrow and return books
+   - Logout or Exit
+
+---
+
+## 🔑 Authentication Highlight
+
+- Each user is assigned a **unique User ID** on registration.  
+- Borrow and return records are tied to this ID, ensuring proper tracking of books and fines.
+
+---
+
+## 📂 Database Schema
+
+### users
+- id (PK)
+- name
+
+### books
+- id (PK)
+- title
+- author
+- available (1 = available, 0 = borrowed)
+
+### borrows
+- id (PK)
+- user_id (FK → users.id)
+- book_id (FK → books.id)
+- borrow_date
+- expected_return
+- return_date
+- charges
+- fine
+
+---
+
+## 🧑‍💻 Example Flow
+
+```
+--- Library Management ---
+1. Register User
+2. Login with User ID
+3. Exit
+
+Choose option: 1
+Enter your name: Rahul
+ Registered successfully! Your User ID is 1
+
+--- User Menu (Rahul) ---
+1. View Books
+2. Borrow Book
+3. Return Book
+4. Logout
+```
